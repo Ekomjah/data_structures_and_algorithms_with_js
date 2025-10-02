@@ -89,7 +89,7 @@ class LinkedList {
     return this.find(value, obj.next, index + 1);
   }
 
-  removeAt(count, obj = this, index = 1) {
+  removeAt(count, obj = this.head, index = 1) {
     if (count === index) {
       obj.value = obj.next.value;
       obj.next = obj.next.next;
@@ -152,9 +152,8 @@ list.append("goose");
 console.log(list.size());
 list.pop();
 list.pop();
+console.log(list.removeAt(3))
 console.log(list.find("goldfish"))
-list.pop();
-list.pop();
 console.log(list.atIndex(2));
 console.log(list);
 console.log(list.toString());
