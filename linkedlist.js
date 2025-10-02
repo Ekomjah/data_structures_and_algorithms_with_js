@@ -125,18 +125,19 @@ list.append("cat");
 list.append("rabbit");
 list.append("parrot");
 
- list.append("hamster");
-// list.append("turtle");
-// list.append("goldfish");
-// list.append("lizard");
-// list.append("dog")
-// list.append("snake");
-// list.append("horse");
-// list.append("cow");
-// list.append("goat");
-// list.append("sheep");
-// list.append("duck");
-// list.append("goose");
+list.append("hamster");
+list.append("turtle");
+list.append("goldfish");
+list.append("lizard");
+list.append("dog");
+list.append("snake");
+list.append("horse");
+list.append("cow");
+list.append("goat");
+list.append("sheep");
+list.append("duck");
+list.append("goose");
+
 console.log(list.size());
 console.log(list.head());
 console.log(list.tail());
