@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class LinkedList {
+export default class LinkedList {
   constructor() {
     this.head = null;
   }
@@ -51,7 +51,7 @@ class LinkedList {
     return current.value;
   }
 
-  atIndex(count, obj = this.head, index = 1) {
+  atIndex(count, obj = this.head, index = 0) {
     if (count < 0 || !obj) return null;
     if (count === 0)
       return `Value at index '${count}' is '${this.head.value}'.`;
@@ -88,22 +88,23 @@ class LinkedList {
     return this.find(value, obj.next, index + 1);
   }
 
-  removeAt(count, obj = this.head, index = 0) {
-    if (!obj || count < 0) {
-      return "Invalid index or empty list";
+  removeAt(index) {
+    if (index < 0 || !this.head) return "Invalid index or empty list";
+    if (index === 0) {
+      this.head = this.head.next;
+      return `Removed element at index ${index}`;
     }
-    if (count === 0 && Object.values(obj).length === 1) {
-      this.head = null;
-      return "Removed element at index " + count;
+    let cur = this.head;
+    let i = 0;
+    while (cur && cur.next) {
+      if (i + 1 === index) {
+        cur.next = cur.next.next;
+        return `Removed element at index ${index}`;
+      }
+      cur = cur.next;
+      i++;
     }
-    if (count === index) {
-      obj.value = obj.next.value;
-      obj.next = obj.next.next;
-      return;
-    }
-    if (!Object.values(obj).length || Object.values(obj).length < count)
-      return "Empty tree.";
-    return this.removeAt(count, obj.next, index + 1);
+    return "Index out of bounds";
   }
 
   toString(obj = this.head) {
@@ -122,3 +123,10 @@ class LinkedList {
 
   //TODO: Work on the insertAt class method like so: insertAt(index, value=)
 }
+const list = new LinkedList();
+list.clear();
+list.append("first");
+list.append("last");
+console.log("Test 5.1 - Contains 'last':", list.contains("last")); // Expected: true
+console.log("Test 5.2 - Find 'last':", list.find("last")); // Expected: 1
+console.log("Test 5.3 - ToString (last node test):", list.toString()); // Expected: "(first) -> (last) -> (null)
