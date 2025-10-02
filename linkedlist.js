@@ -79,12 +79,12 @@ class LinkedList {
   }
 
   find(value, obj = this.head, index = 1) {
-    if (obj.value === value) {
-      return value;
-    }
-    if (!Object.values(obj).length) return "Empty tree.";
+    if (!obj) return "Empty tree.";
     if (!obj.next) {
       return null;
+    }
+    if (obj.value === value) {
+      return value;
     }
     return this.find(value, obj.next, index + 1);
   }
@@ -119,42 +119,5 @@ class LinkedList {
   //TODO: Work on the insertAt class method like so: insertAt(index, value=)
 }
 
-const list = new LinkedList();
-list.append("starfish");
-list.append("cat");
-list.append("rabbit");
-list.append("parrot");
-
-list.append("hamster");
-list.append("turtle");
-list.append("goldfish");
-list.append("lizard");
-list.append("dog");
-list.append("snake");
-list.append("horse");
-list.append("cow");
-list.append("goat");
-list.append("sheep");
-list.append("duck");
-list.append("goose");
-
-// console.log(list.size());
-// console.log(list.head());
-// console.log(list.tail());
-// console.log(list.pop());
-// console.log(list.contains("cat"));
-// console.log(list.contains("farm"));
-// console.log(list.find("rabbit"));
-//
-// console.log(list.removeAt(2));
-// ;
-//
-console.log(list.size());
-list.pop();
-list.pop();
-console.log(list.removeAt(3))
-console.log(list.find("goldfish"))
-console.log(list.atIndex(2));
-console.log(list);
-console.log(list.toString());
-console.log(list.size());
+let emptyList = new LinkedList();
+console.log(emptyList.find(10)); 
