@@ -6,70 +6,71 @@ class Node {
 }
 
 class LinkedList {
-  static array = [];
-  constructor() {}
-  append(value, obj = this) {
-    if (Object.values(obj).length) {
-      if (!obj.next) {
-        obj.next = new Node(value);
-        return obj.next;
-      }
-      return this.append(value, obj.next);
+  constructor() {
+    this.head = null;
+  }
+  append(value) {
+    let newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      return;
     } else {
-      this.value = value;
-      this.next = null;
+      let current = this.head;
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = newNode;
       return;
     }
   }
 
-  prepend(value, obj = this) {
-    this.value = value;
-    this.next = null;
+  prepend(value) {
+    this.head = new Node(value, this.head);
   }
 
-  size(obj = this, index = 0) {
-    if (!Object.values(obj).length) return 0;
-    if (!obj.next) return index + 1;
-    return this.size(obj.next, index + 1);
+  size() {
+    let count = 0;
+    let current = this.head;
+    while (current) {
+      current = current.next;
+      count++;
+    }
+    return count;
   }
 
   head() {
-    if (!Object.values(this).length) return "Empty tree";
-    return this.value;
+    return this.head ? this.head.value : null;
   }
 
-  tail(obj = this) {
-    if (!Object.values(obj).length) return "Empty tree";
-    if (!obj.next) return obj.value;
-    return this.tail(obj.next);
+  tail() {
+    let current = this.head;
+    if (!current) return null;
+    while (current.next) {
+      current = current.next;
+    }
+    return current.value;
   }
 
-  atIndex(count, obj = this, index = 1) {
-    if (count === index) {
-      return `Value at index '${count}' is '${obj.value}'.`;
-    }
-    if (!Object.values(obj).length) return "Empty tree.";
-    if (!obj.next) {
-      return "(404) Not such index.";
-    }
+  atIndex(count, obj = this.head, index = 1) {
+    if (count === index) return `Value at index '${count}' is '${obj.value}'.`;
+    if (!Object.values(this.head).length || !obj.next) return null;
     return this.atIndex(count, obj.next, index + 1);
   }
 
-  pop(obj = this, index = 0) {
-    try {
-      if (!Object.values(obj).length) return;
-      if (!obj.next.next) {
-        obj.next = null;
-        return "Popped one element successfully!";
-      }
-      return this.pop(obj.next, index + 1);
-    } catch (err) {
-      Object.keys(obj).forEach((key) => delete this[key]);
-      return "Popped all elements";
+  pop(obj = this.head) {
+    if (!obj) return "Empty list";
+    if (!obj.next) {
+      this.head = null;
+      return "Popped last element";
     }
+    while (obj.next.next) {
+      obj = obj.next;
+    }
+    obj.next = null;
+    return "Popped one element";
   }
 
-  contains(value, obj = this, index = 1) {
+  contains(value, obj = this.head, index = 1) {
     if (obj.value === value) {
       return true;
     }
@@ -104,16 +105,18 @@ class LinkedList {
     return this.removeAt(count, obj.next, index + 1);
   }
 
-  toString(obj = this) {
-    if (!obj) {
-      LinkedList.array.push("(null)");
-      return;
+  toString(obj = this.head) {
+    let array = [];
+    while (obj) {
+      array.push(`(${obj.value})`);
+      obj = obj.next;
     }
-    for (const key of Object.values(obj)) {
-      LinkedList.array.push(`(${key})`);
-      this.toString(obj.next);
-      return LinkedList.array.join(" -> ");
-    }
+    array.push("(null)");
+    return array.join(" -> ");
+  }
+
+  clear() {
+    this.head = null;
   }
 
   //TODO: Work on the insertAt class method like so: insertAt(index, value=)
@@ -138,15 +141,29 @@ list.append("sheep");
 list.append("duck");
 list.append("goose");
 
+// console.log(list.size());
+// console.log(list.head());
+// console.log(list.tail());
+// console.log(list.pop());
+// console.log(list.contains("cat"));
+// console.log(list.contains("farm"));
+// console.log(list.find("rabbit"));
+//
+// console.log(list.removeAt(2));
+// ;
+//
 console.log(list.size());
-console.log(list.head());
-console.log(list.tail());
-console.log(list.pop());
-console.log(list.contains("cat"));
-console.log(list.contains("farm"));
-console.log(list.find("rabbit"));
-console.log(list.atIndex(5));
-console.log(list.removeAt(2));
-console.log(list.size());
-console.log(list.toString());
+list.pop();
+list.pop();
+list.pop();
+list.pop();
+list.pop();
+list.pop();
+list.pop();
+list.pop();
+list.pop();
+list.pop();
+console.log(list.atIndex(2));
 console.log(list);
+console.log(list.toString());
+console.log(list.tail());
