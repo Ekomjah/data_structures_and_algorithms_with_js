@@ -52,8 +52,8 @@ class LinkedList {
   }
 
   atIndex(count, obj = this.head, index = 1) {
+    if (count < 0 || !obj) return null;
     if (count === index) return `Value at index '${count}' is '${obj.value}'.`;
-    if (!Object.values(this.head).length || !obj.next) return null;
     return this.atIndex(count, obj.next, index + 1);
   }
 
@@ -71,17 +71,14 @@ class LinkedList {
   }
 
   contains(value, obj = this.head, index = 1) {
+    if (!Object.values(obj).length || !obj.next) return false;
     if (obj.value === value) {
       return true;
-    }
-    if (!Object.values(obj).length) return "Empty tree.";
-    if (!obj.next) {
-      return false;
     }
     return this.contains(value, obj.next, index + 1);
   }
 
-  find(value, obj = this, index = 1) {
+  find(value, obj = this.head, index = 1) {
     if (obj.value === value) {
       return value;
     }
@@ -155,15 +152,10 @@ list.append("goose");
 console.log(list.size());
 list.pop();
 list.pop();
-list.pop();
-list.pop();
-list.pop();
-list.pop();
-list.pop();
-list.pop();
+console.log(list.find("goldfish"))
 list.pop();
 list.pop();
 console.log(list.atIndex(2));
 console.log(list);
 console.log(list.toString());
-console.log(list.tail());
+console.log(list.size());
