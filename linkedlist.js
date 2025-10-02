@@ -38,7 +38,7 @@ class LinkedList {
     return count;
   }
 
-  head() {
+  top() {
     return this.head ? this.head.value : null;
   }
 
@@ -53,6 +53,8 @@ class LinkedList {
 
   atIndex(count, obj = this.head, index = 1) {
     if (count < 0 || !obj) return null;
+    if (count === 0)
+      return `Value at index '${count}' is '${this.head.value}'.`;
     if (count === index) return `Value at index '${count}' is '${obj.value}'.`;
     return this.atIndex(count, obj.next, index + 1);
   }
@@ -71,7 +73,7 @@ class LinkedList {
   }
 
   contains(value, obj = this.head, index = 1) {
-    if (!Object.values(obj).length || !obj.next) return false;
+    if (!obj || !Object.values(obj).length) return false;
     if (obj.value === value) {
       return true;
     }
@@ -80,25 +82,27 @@ class LinkedList {
 
   find(value, obj = this.head, index = 1) {
     if (!obj) return "Empty tree.";
-    if (!obj.next) {
-      return null;
-    }
     if (obj.value === value) {
-      return value;
+      return `Found ${value} at index ${index - 1}`;
     }
     return this.find(value, obj.next, index + 1);
   }
 
-  removeAt(count, obj = this.head, index = 1) {
+  removeAt(count, obj = this.head, index = 0) {
+    if (!obj || count < 0) {
+      return "Invalid index or empty list";
+    }
+    if (count === 0 && Object.values(obj).length === 1) {
+      this.head = null;
+      return "Removed element at index " + count;
+    }
     if (count === index) {
       obj.value = obj.next.value;
       obj.next = obj.next.next;
       return;
     }
-    if (!Object.values(obj).length) return "Empty tree.";
-    if (!obj.next) {
-      return "(404) Not such value.";
-    }
+    if (!Object.values(obj).length || Object.values(obj).length < count)
+      return "Empty tree.";
     return this.removeAt(count, obj.next, index + 1);
   }
 
