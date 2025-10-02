@@ -118,6 +118,3 @@ class LinkedList {
 
   //TODO: Work on the insertAt class method like so: insertAt(index, value=)
 }
-
-let emptyList = new LinkedList();
-console.log(emptyList.find(10)); 
