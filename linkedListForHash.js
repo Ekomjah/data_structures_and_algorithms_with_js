@@ -81,6 +81,33 @@ export default class LinkedList {
     return array.join(" -> ");
   }
 
+  arrayOfKeys(obj = this.head) {
+    let array = [];
+    while (obj) {
+      array.push(obj.key);
+      obj = obj.next;
+    }
+    return array;
+  }
+
+  arrayOfValues(obj = this.head) {
+    let array = [];
+    while (obj) {
+      array.push(obj.value);
+      obj = obj.next;
+    }
+    return array;
+  }
+
+  arrayOfEntries(obj = this.head) {
+    let array = [];
+    while (obj) {
+      array.push([obj.key, obj.value]);
+      obj = obj.next;
+    }
+    return array;
+  }
+
   clear() {
     this.head = null;
   }

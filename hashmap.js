@@ -33,7 +33,7 @@ class HashMap {
   set(key, value) {
     if (this.length() > HashMap.multiple) {
       HashMap.capacity *= 2;
-      console.log(HashMap.capacity);
+      this.array.length = HashMap.capacity;
       [...this.array].forEach((item, i) => {
         if (item === undefined) this.array[i] = null;
       });
@@ -94,7 +94,7 @@ class HashMap {
     let lengthOfList = 0;
     while (i < this.array.length) {
       if (this.array[i] !== null && this.array[i] !== undefined) {
-        lengthOfList += 1;
+        lengthOfList += this.array[i].size();
         i += 1;
       } else {
         i += 1;
@@ -102,14 +102,91 @@ class HashMap {
     }
     return lengthOfList;
   }
+
+  clear() {
+    HashMap.capacity = 16;
+    this.array = new Array(HashMap.capacity).fill(null);
+    return this.array;
+  }
+
+  keys() {
+    let keys = [];
+    let index = 0;
+    let obj = this.array;
+    while (index < obj.length) {
+      if (obj[index] !== null) {
+        let indexedArray = obj[index].arrayOfKeys();
+        keys.push(...indexedArray);
+        index++;
+      } else {
+        index++;
+      }
+    }
+    return keys;
+  }
+
+  values() {
+    let values = [];
+    let index = 0;
+    let obj = this.array;
+    while (index < obj.length) {
+      if (obj[index] !== null) {
+        let indexedArray = obj[index].arrayOfValues();
+        values.push(...indexedArray);
+        index++;
+      } else {
+        index++;
+      }
+    }
+    return values;
+  }
+
+  entries() {
+    let entries = [];
+    let index = 0;
+    let obj = this.array;
+    while (index < obj.length) {
+      if (obj[index] !== null) {
+        let indexedArray = obj[index].arrayOfEntries();
+        entries.push(...indexedArray);
+        index++;
+      } else {
+        index++;
+      }
+    }
+    return entries;
+  }
 }
 
 //
 const test = new HashMap();
 // //
-// //
-// console.log(test.hash("Rama"));
-// //
-//
+test.set("Rama", "yellow");
+test.set("carrot", "orange");
+test.set("dog", "brown");
+test.set("elephant", "gray");
+test.set("frog", "green");
+test.set("grape", "purple");
+test.set("hat", "black");
+test.set("ice cream", "white");
+test.set("jacket", "blue");
+test.set("kite", "pink");
+test.set("lion", "golden");
+test.set("Sita", "orange");
+test.set("apple", "red");
+test.set("banana", "yellow");
+test.set("sad", "ma");
+test.set("at", "black");
+test.set("ce cream", "white");
+test.set("jaket", "blue");
+test.set("kie", "pink");
+test.set("lon", "golden");
+test.set("Sia", "orange");
+test.set("aple", "red");
+test.set("baana", "yellow");
+test.set("Si", "orange");
+test.set("ale", "red");
 
-console.log(test.array[3]);
+//
+console.log(test.entries());
+console.log(test.length() === test.entries().length);
