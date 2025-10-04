@@ -81,11 +81,20 @@ export default class LinkedList {
   }
 
   find(value, obj = this.head, index = 1) {
-    if (!obj) return "Empty tree.";
+    if (!obj) return null;
     if (obj.value === value) {
-      return `Found ${value} at index ${index - 1}`;
+      return index - 1;
     }
     return this.find(value, obj.next, index + 1);
+  }
+
+  replaceWith(value, newValue, obj = this.head, index = 1) {
+    if (!obj) return "Empty tree or null value";
+    if (obj.value === value) {
+      obj.value = newValue;
+      return;
+    }
+    return this.replaceWith(value, newValue, obj.next);
   }
 
   removeAt(index) {
@@ -123,10 +132,8 @@ export default class LinkedList {
 
   //TODO: Work on the insertAt class method like so: insertAt(index, value=)
 }
+
 const list = new LinkedList();
-list.clear();
-list.append("first");
-list.append("last");
-console.log("Test 5.1 - Contains 'last':", list.contains("last")); // Expected: true
-console.log("Test 5.2 - Find 'last':", list.find("last")); // Expected: 1
-console.log("Test 5.3 - ToString (last node test):", list.toString()); // Expected: "(first) -> (last) -> (null)
+list.append("me")
+list.append("you")
+console.log(list.find("me"));
