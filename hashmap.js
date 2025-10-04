@@ -37,6 +37,7 @@ class HashMap {
       [...this.array].forEach((item, i) => {
         if (item === undefined) this.array[i] = null;
       });
+      return HashMap.capacity;
     }
     let index = this.hash(key);
     if (!this.array[index]) {
@@ -46,7 +47,9 @@ class HashMap {
     }
     if (this.array[index].contains(key)) {
       let i = this.array[index].find(key);
+      if (this.array[index].atIndex(i) === value) return;
       this.array[index].replaceWith(i, value);
+      return;
     }
     this.array[index].append(key, value);
     return;
@@ -62,7 +65,7 @@ class HashMap {
     while (listToGet.key !== key) {
       listToGet = listToGet.next;
     }
-    return listToGet.key;
+    return listToGet.value;
   }
 
   has(key) {
@@ -108,19 +111,5 @@ const test = new HashMap();
 // console.log(test.hash("Rama"));
 // //
 //
-test.set("Rama", "yellow")
-test.set("carrot", "orange");
-test.set("dog", "brown");
-test.set("elephant", "gray");
-test.set("frog", "green");
-test.set("grape", "purple");
-test.set("hat", "black");
-test.set("ice cream", "white")
-test.set("jacket", "blue");
-test.set("kite", "pink");
-test.set("lion", "golden")
-test.set("Sita", "orange");
-test.set("apple", "red");
-test.set("banana", "yellow");
-test.set("sad", "ma")
-console.log(test.array.filter(item => item!==null).length);
+
+console.log(test.array[3]);
