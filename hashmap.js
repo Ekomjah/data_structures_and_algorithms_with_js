@@ -33,7 +33,7 @@ class HashMap {
 
   getScore(index) {
     if (index >= 0 && index < this.array.length) {
-      return scores[index];
+      return this.array[index];
     } else {
       return "Index out of bounds";
     }
@@ -190,4 +190,4 @@ const test = new HashMap();
 test.set("one", 1);
 test.set("two", 2);
 test.set("three", 3); 
-console.log(test.getScore(29))
+console.log(test.getScore(9))
