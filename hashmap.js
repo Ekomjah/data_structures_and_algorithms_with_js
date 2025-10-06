@@ -30,16 +30,36 @@ class HashMap {
 
     return hashCode;
   }
+
+  rehash() {
+    let newArr = new Array(HashMap.capacity).fill(null);
+    for (let i = 0; i < this.array.length; i++) {
+      if (this.array[i]) {
+        let curr = this.array[i].head;
+        while (curr) {
+          let index = this.hash(curr.key);
+          if (!newArr[index]) {
+            newArr[index] = new LinkedList();
+            newArr[index].append(curr.key, curr.value);
+          } else {
+            newArr[index].append(curr.key, curr.value);
+          }
+
+          curr = curr.next;
+        }
+      }
+    }
+    this.array = newArr;
+    return newArr;
+  }
+
   set(key, value) {
-    if (this.length() > HashMap.multiple) {
+    let index = this.hash(key);
+    if (this.length() >= HashMap.multiple) {
       HashMap.capacity *= 2;
       this.array.length = HashMap.capacity;
-      [...this.array].forEach((item, i) => {
-        if (item === undefined) this.array[i] = null;
-      });
-      return HashMap.capacity;
+      this.rehash();
     }
-    let index = this.hash(key);
     if (!this.array[index]) {
       this.array[index] = new LinkedList();
       this.array[index].append(key, value);
@@ -161,32 +181,23 @@ class HashMap {
 //
 const test = new HashMap();
 // //
+test.set("the", "teen");
+
+test.set("lion", "goldenBoy");
 test.set("Rama", "yellow");
+test.set("Sita", "lol");
 test.set("carrot", "orange");
 test.set("dog", "brown");
 test.set("elephant", "gray");
 test.set("frog", "green");
 test.set("grape", "purple");
 test.set("hat", "black");
-test.set("ice cream", "white");
-test.set("jacket", "blue");
-test.set("kite", "pink");
-test.set("lion", "golden");
-test.set("Sita", "orange");
-test.set("apple", "red");
-test.set("banana", "yellow");
-test.set("sad", "ma");
-test.set("at", "black");
-test.set("ce cream", "white");
-test.set("jaket", "blue");
-test.set("kie", "pink");
-test.set("lon", "golden");
-test.set("Sia", "orange");
-test.set("aple", "red");
-test.set("baana", "yellow");
-test.set("Si", "orange");
-test.set("ale", "red");
-
 //
-console.log(test.entries());
-console.log(test.length() === test.entries().length);
+test.set("ice cream", "white");
+test.set("ice cream", "white");
+test.set("icecream", "white");
+test.set("jacket", "blue");
+test.set("eleven", "labs");
+test.set("moon", "silver");
+console.log(test.array.length);
+console.log(test.array[17]);
