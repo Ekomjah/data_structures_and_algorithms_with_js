@@ -31,6 +31,14 @@ class HashMap {
     return hashCode;
   }
 
+  getScore(index) {
+    if (index >= 0 && index < this.array.length) {
+      return scores[index];
+    } else {
+      return "Index out of bounds";
+    }
+  }
+
   rehash() {
     let newArr = new Array(HashMap.capacity).fill(null);
     for (let i = 0; i < this.array.length; i++) {
@@ -178,26 +186,8 @@ class HashMap {
   }
 }
 
-//
 const test = new HashMap();
-// //
-test.set("the", "teen");
-
-test.set("lion", "goldenBoy");
-test.set("Rama", "yellow");
-test.set("Sita", "lol");
-test.set("carrot", "orange");
-test.set("dog", "brown");
-test.set("elephant", "gray");
-test.set("frog", "green");
-test.set("grape", "purple");
-test.set("hat", "black");
-//
-test.set("ice cream", "white");
-test.set("ice cream", "white");
-test.set("icecream", "white");
-test.set("jacket", "blue");
-test.set("eleven", "labs");
-test.set("moon", "silver");
-console.log(test.array.length);
-console.log(test.array[17]);
+test.set("one", 1);
+test.set("two", 2);
+test.set("three", 3); 
+console.log(test.getScore(29))
