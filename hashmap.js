@@ -1,9 +1,5 @@
 import LinkedList from "./linkedListForHash.js";
 
-// if (index < 0 || index >= buckets.length) {
-//   throw new Error("Trying to access index out of bounds");
-// }
-
 class HashMap {
   static loadFactor = 0.75;
   static _caps = 16;
@@ -190,4 +186,5 @@ const test = new HashMap();
 test.set("one", 1);
 test.set("two", 2);
 test.set("three", 3); 
+
 console.log(test.getScore(9))
