@@ -1,0 +1,19 @@
+{
+  "name": "data_structures_and_algorithms_with_js",
+  "version": "1.0.0",
+  "description": "- A folder containing all the data structures and the algorithms I used to solve them. These will help provide insights into more computer science-y topics and methods. - If you would like to use it for any learning purposes, feel free to fork this project.",
+  "main": "bst.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ekomjah/data_structures_and_algorithms_with_js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ekomjah/data_structures_and_algorithms_with_js/issues"
+  },
+  "homepage": "https://github.com/Ekomjah/data_structures_and_algorithms_with_js#readme"
+}
