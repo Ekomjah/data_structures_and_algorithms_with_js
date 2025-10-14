@@ -4,7 +4,8 @@
   "description": "- A folder containing all the data structures and the algorithms I used to solve them. These will help provide insights into more computer science-y topics and methods. - If you would like to use it for any learning purposes, feel free to fork this project.",
   "main": "bst.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo 'Running tests... (none yet)'",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Ekomjah/data_structures_and_algorithms_with_js/issues"
   },
-  "homepage": "https://github.com/Ekomjah/data_structures_and_algorithms_with_js#readme"
+  "homepage": "https://github.com/Ekomjah/data_structures_and_algorithms_with_js#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.1.7"
+  }
 }
